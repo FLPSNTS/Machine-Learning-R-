@@ -1,0 +1,154 @@
+---
+title: "Lab 2: Exploratory Data Analysis – Student Exercises"
+author: "Student Name:"
+date: ""
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Lab 2 – Student Exercises
+**Topic:** Exploratory Data Analysis and Descriptive Statistics  
+**Dataset:** `mtcars` (built-in R dataset)
+
+---
+
+## Scenario
+
+You are working as a **junior data analyst** in an automotive research company.
+Your task is to explore the `mtcars` dataset to identify patterns related to
+**fuel efficiency**, **engine characteristics**, and **transmission types**.
+
+You must answer each question using **R code** and provide **written interpretations**
+of your results.
+
+---
+
+## Core Exercise Questions (To Be Done in the Lab)
+
+### Question 1: Understanding the Dataset
+
+1. Load the `mtcars` dataset.
+mtcars
+2. Display the first few rows of the dataset.
+head(mtcars)
+3. Identify which variables are **numerical** and which should be treated as **categorical**.
+numerical
+MPG,DISP,HP,DRAT,wt,qsec
+categorical
+cyl,vs,am,gear
+
+4. Convert `cyl` (number of cylinders) and `am` (transmission type) into factors.
+```{r}
+# Write your code here
+
+mtcars$cyl <- factor(mtcars$cyl)
+
+mtcars$am <- factor(mtcars$am)
+levels(mtcars$am) <- c("Automatic", "Manual")
+
+```
+
+Write a short explanation describing the variables in the dataset.
+
+The variables were passed from numericals to factors
+factors have levels like category labels (1 for automatic, 0 for manual etc)
+
+
+---
+
+### Question 2: Descriptive Statistics (Numerical Variable)
+
+Fuel efficiency (`mpg`) is an important numerical variable.
+
+1. Calculate the **mean**, **median**, and **standard deviation** of `mpg`.
+
+2. Explain what each statistic tells you about fuel efficiency.
+
+```{r}
+# Write your code here
+
+mean(mtcars$mpg)
+median(mtcars$mpg)
+sd(mtcars$mpg)
+```
+
+
+mean is the average across all cars (affected by extreme values)
+Median is middle value when all cars are orderd
+standard variation is the variability, high sd high variation of levels of mpg
+
+---
+
+### Question 3: Visualising Fuel Efficiency
+
+1. Create a **histogram** of `mpg`.
+2. Add appropriate axis labels and a title.
+
+
+
+```{r}
+# Write your code here
+
+
+hist(mtcars$mpg,
+     main = "Histogram of Fuel Efficiency (MPG)",
+     xlab = "Miles per Gallon (MPG)",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "black")
+
+```
+
+Write a short paragraph interpreting the shape and spread of the distribution.
+
+---
+
+### Question 4: Comparing Groups Using a Boxplot
+
+1. Create a **boxplot** comparing `mpg` for cars with automatic and manual transmission.
+2. Add appropriate labels.
+
+```{r}
+# Write your code here
+
+boxplot(mpg ~ am,
+        data = mtcars,
+        main = "Fuel Efficiency (MPG) by Transmission Type",
+        xlab = "Transmission Type",
+        ylab = "Miles per Gallon (MPG)",
+        col = c("lightgray", "lightblue"))
+
+```
+
+Explain what the boxplot tells you about fuel efficiency and transmission type.
+
+---
+
+### Question 5: Exploring Categorical Data
+
+1. Create a **bar plot** showing the number of cars for each value of `cyl`.
+2. Add a suitable title and axis labels.
+
+```{r}
+# Write your code here
+barplot(table(mtcars$cyl),
+        main = "Number of Cars by Cylinder Count",
+        xlab = "Number of Cylinders",
+        ylab = "Number of Cars",
+        col = "lightblue",
+        border = "black")
+
+```
+
+Explain what this graph shows about the composition of the dataset.
+
+---
+
+## Submission Notes
+
+- Ensure all code runs without errors.
+- Include **both R code and written explanations**.
+- Save and upload this file as instructed on Blackboard.
